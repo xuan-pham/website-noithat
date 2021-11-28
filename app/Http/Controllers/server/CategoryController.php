@@ -12,7 +12,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $data = Category::orderBy('name', 'ASC')->select('id', 'name', 'status', 'created_at')->search()->paginate(5);
+        $data = Category::search()->paginate(5);
         return view('server.category.index', compact('data'));
     }
     public function create()

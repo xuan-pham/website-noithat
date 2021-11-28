@@ -28,7 +28,6 @@ class ProductController extends Controller
 
     public function store(storeRequest $request)
     {
-        //dd($request->all());
         if ($request->has('file_image')) {
             $file = $request->file_image;
             $ext = $request->file_image->extension();
@@ -48,15 +47,17 @@ class ProductController extends Controller
     }
 
 
-    public function edit($id)
+    public function edit( $id)
     {
-        return view('server.product.edit');
+        $product = Product::find($id);
+        $data = Category::orderBy('name', 'ASC')->select('id', 'name')->get();
+        return view('server.product.edit',compact('data','product'));
     }
 
 
     public function update(updateRequest $request, $id)
     {
-        //
+        dd($request->all());
     }
 
 

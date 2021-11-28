@@ -9,7 +9,7 @@ class ListBlogController extends Controller
 {
     public function index()
     {
-        $data = CategoryBlog::orderBy('name', 'ASC')->select('id', 'name', 'status', 'created_at')->search()->paginate(5);
+        $data = CategoryBlog::search()->paginate(5);
         return view('server.listBlog.index', compact('data'));
     }
     public function create()
@@ -28,18 +28,18 @@ class ListBlogController extends Controller
     }
     public function update(Request $request, $id)
     {
-        // $category = Category::find($id);
-        // $category->update($request->only('name', 'status'));
-        // return redirect()->route('list.index')->with('success', 'Thêm mới thành công!');
+        $category = CategoryBlog::find($id);
+        $category->update($request->only('name', 'status'));
+        return redirect()->route('list.index')->with('success', 'Thêm mới thành công!');
     }
     public function destroy($id)
     {
-        // $category = Category::find($id);
-        // if ($category->countProducts->count() > 0) {
-        //     return redirect()->route('list.index')->with('error', 'Không thể xoá danh mục có sản phẩm!');
-        // } else {
-        //     $category->delete();
-        //     return redirect()->route('list.index')->with('success', 'Xoá thành công!');
-        // }
+        $category = CategoryBlog::find($id);
+        if ($category->countBlog->count() > 0) {
+            return redirect()->route('list.index')->with('error', 'Không thể xoá danh mục có tin tức!');
+        } else {
+            $category->delete();
+            return redirect()->route('list.index')->with('success', 'Xoá thành công!');
+        }
     }
 }

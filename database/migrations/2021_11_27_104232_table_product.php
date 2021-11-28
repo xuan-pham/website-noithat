@@ -15,7 +15,7 @@ class TableProduct extends Migration
     {
         Schema::create('product', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name',255)->unique();
+            $table->string('name',255);
             $table->string('image',255);
             $table->text('content');
             $table->double('price',8,2);

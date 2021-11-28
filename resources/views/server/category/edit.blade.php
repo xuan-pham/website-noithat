@@ -14,12 +14,21 @@
         <div class="form-group">
             <label for=""> Trạng thái</label>
             <br>
-            <input type="radio" class="ml-4" value="1" name="status" checked> Hoạt động
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            <input type="radio" value="0" name="status"> Riêng tư
+            @if ($data->status == 0)
+                <input type="radio" class="ml-4" value="1" name="status"> Hoạt động
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                <input type="radio" value="0" name="status" checked> Riêng tư
+            @else
+                <input type="radio" class="ml-4" value="1" name="status" checked> Hoạt động
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                <input type="radio" value="0" name="status"> Riêng tư
+            @endif
         </div>
         <a href="{{ route('category.index') }}" class="btn btn-primary mr-4"><i class="fas fa-undo"></i> Quay về danh sách</a>
 

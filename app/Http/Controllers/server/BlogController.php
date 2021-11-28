@@ -4,42 +4,62 @@ namespace App\Http\Controllers\server;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Blog;
+use App\Models\CategoryBlog;
 
 class BlogController extends Controller
 {
     public function index()
     {
-        // $data = Category::orderBy('name', 'ASC')->select('id', 'name', 'status', 'created_at')->search()->paginate(5);
-        return view('server.category.index', compact('data'));
+        $data = Blog::search()->paginate(5);
+        return view('server.blog.index', compact('data'));
     }
     public function create()
     {
-        return view('server.category.create');
+        $data = CategoryBlog::orderBy('name', 'ASC')->select('id', 'name')->get();
+        return view('server.blog.create', compact('data'));
     }
     public function store(Request $request)
     {
-        // Category::create($request->all());
-        // return redirect()->route('category')->with('success', 'Thêm thành công!');
+        if ($request->has('file_image')) {
+            $file = $request->file_image;
+            $ext = $request->file_image->extension();
+            $file_name = time() . '-' . 'blog' . '.' . $ext;
+            $file->move(public_path('uploads/blog'), $file_name);
+        }
+        $request->merge(['image' => $file_name]);
+        Blog::create($request->all());
+        return redirect()->route('blog.index')->with('success', 'Thêm thành công!');
     }
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        // $data = Category::find($id);
-        return view('server.category.edit', compact('data'));
+        $data = Blog::find($id);
+        $list = CategoryBlog::orderBy('name', 'ASC')->select('id', 'name')->get();
+        return view('server.blog.edit', compact('data', 'list'));
     }
     public function update(Request $request, $id)
     {
-        // $category = Category::find($id);
-        // $category->update($request->only('name', 'status'));
-        // return redirect()->route('category.index')->with('success', 'Thêm mới thành công!');
+        $blog = Blog::find($id);
+        if ($request->has('file_image')) {
+            unlink('uploads/blog/' . $blog->image);
+            $file = $request->file_image;
+            $ext = $request->file_image->extension();
+            $file_name = time() . '-' . 'blog' . '.' . $ext;
+            $file->move(public_path('uploads/blog'), $file_name);
+            $request->merge(['image' => $file_name]);
+            $blog->update($request->all());
+            return redirect()->route('blog.index')->with('success', 'Thêm mới thành công!');
+        } else {
+            $file_name = $blog->image;
+            $request->merge(['image' => $file_name]);
+            $blog->update($request->all());
+            return redirect()->route('blog.index')->with('success', 'Thêm mới thành công!');
+        }
     }
     public function destroy($id)
     {
-        // $category = Category::find($id);
-        // if ($category->countProducts->count() > 0) {
-        //     return redirect()->route('category.index')->with('error', 'Không thể xoá danh mục có sản phẩm!');
-        // } else {
-        //     $category->delete();
-        //     return redirect()->route('category.index')->with('success', 'Xoá thành công!');
-        // }
+        $blog = Blog::find($id);
+        $blog->delete();
+        return redirect()->route('blog.index')->with('success', 'Xoá thành công!');
     }
 }

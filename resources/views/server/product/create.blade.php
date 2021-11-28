@@ -1,5 +1,5 @@
 @extends('masterLayouts/server')
-@section('title', '')
+@section('title', 'Thêm mới sản phẩm')
 @section('server')
     <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}

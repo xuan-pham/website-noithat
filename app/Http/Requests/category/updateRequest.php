@@ -31,7 +31,6 @@ class updateRequest extends FormRequest
     {
         return [
             'name.required' => 'không được để trống!',
-            'name.unique' => 'danh mục đã tồn tại',
         ];
     }
 }

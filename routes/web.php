@@ -56,9 +56,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/', [ProductController::class, 'index'])->name('product.index');
         Route::get('/create', [ProductController::class, 'create'])->name('product.create');
         Route::post('/store', [ProductController::class, 'store'])->name('product.store');
-        Route::get('/edit', [ProductController::class, 'edit'])->name('product.edit');
-        Route::put('/update', [ProductController::class, 'update'])->name('product.update');
-        Route::delete('/destroy', [ProductController::class, 'destroy'])->name('product.destroy');
+        Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+        Route::put('/update/{id}', [ProductController::class, 'update'])->name('product.update');
+        Route::delete('/destroy/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
     });
     // list
     Route::prefix('list')->group(function () {
@@ -74,9 +74,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/', [BlogController::class, 'index'])->name('blog.index');
         Route::get('/create', [BlogController::class, 'create'])->name('blog.create');
         Route::post('/store', [BlogController::class, 'store'])->name('blog.store');
-        Route::get('/edit', [BlogController::class, 'edit'])->name('blog.edit');
-        Route::put('/update', [BlogController::class, 'update'])->name('blog.update');
-        Route::delete('/destroy', [BlogController::class, 'destroy'])->name('blog.destroy');
+        Route::get('/edit/{id}', [BlogController::class, 'edit'])->name('blog.edit');
+        Route::put('/update/{id}', [BlogController::class, 'update'])->name('blog.update');
+        Route::delete('/destroy/{id}', [BlogController::class, 'destroy'])->name('blog.destroy');
     });
     // order
     Route::prefix('order')->group(function () {
