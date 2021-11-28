@@ -4,82 +4,63 @@ namespace App\Http\Controllers\server;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\product\storeRequest;
+use App\Http\Requests\product\updateRequest;
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        return view('server.product.index');
+        $data = Product::search()->paginate(5);
+        return view('server.product.index', compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
+
     {
-        return view('server.product.create');
+        $data = Category::orderBy('name', 'ASC')->select('id', 'name')->get();
+        return view('server.product.create', compact('data'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(storeRequest $request)
+    {
+        //dd($request->all());
+        if ($request->has('file_image')) {
+            $file = $request->file_image;
+            $ext = $request->file_image->extension();
+            $file_name = time() . '-' . 'product' .'.' . $ext;
+            $file->move(public_path('uploads/product'), $file_name);
+        }
+        $request->merge(['image' => $file_name]);
+        if (Product::create($request->all())) {
+            return redirect()->route('product.index')->with('success','Thêm mới thành công!');
+        }
+    }
+
+
+    public function show()
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $product,$id)
+    public function edit($id)
     {
         return view('server.product.edit');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Product $product,$id)
+
+    public function update(updateRequest $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Product $product,$id)
+
+    public function destroy($id)
     {
         //
     }

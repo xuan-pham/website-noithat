@@ -3,3 +3,10 @@
     justify-content: center;
     margin-top: 2%;
 }
+.functionServer.pr {
+    text-align: right;
+    margin-right: 10%;
+}
+img.image-product {
+    width: 100%;
+}

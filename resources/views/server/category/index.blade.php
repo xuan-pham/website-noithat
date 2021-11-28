@@ -10,8 +10,17 @@
     <div class="mt-4">
         <a href="{{ route('category.create') }}">Thêm mới <i class="fas fa-plus"></i></a>
     </div>
-
     <hr>
+    @if (Session::has('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if (Session::has('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     <table class="table text-center">
         <thead>
             <tr>
@@ -59,4 +68,3 @@
         {{ $data->appends(request()->all())->links() }}
     </div>
 @endsection
-

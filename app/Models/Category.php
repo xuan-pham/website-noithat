@@ -13,7 +13,7 @@ class Category extends Model
     protected $fillable = ['name', 'status'];
     public function countProducts()
     {
-       return $this->hasMany(Product::class,'id_cate','id');
+        return $this->hasMany(Product::class, 'id_cate', 'id');
     }
     public function scopeSearch($query)
     {
@@ -22,4 +22,5 @@ class Category extends Model
         }
         return $query;
     }
+    
 }
