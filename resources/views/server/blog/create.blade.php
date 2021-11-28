@@ -1,5 +1,5 @@
 @extends('masterLayouts/server')
-@section('title','')
+@section('title','Thêm mới tin tức')
 @section('server')
     
 @endsection

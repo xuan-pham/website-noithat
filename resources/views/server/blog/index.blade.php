@@ -1,5 +1,5 @@
 @extends('masterLayouts/server')
-@section('title', '')
+@section('title', 'Danh sách tin tức')
 @section('server')
 <form action="" class="form-inline">
     <div class="form-group">

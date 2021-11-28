@@ -1506,6 +1506,11 @@ ol {
 	margin-bottom: 15px;
 }
 
+.product__item__pics {
+    height: 180px;
+    position: relative;
+    overflow: hidden;
+}
 .filter__option span {
 	font-size: 24px;
 	color: #b2b2b2;
@@ -1516,6 +1521,11 @@ ol {
 	-ms-transition: all, 0.3s;
 	-o-transition: all, 0.3s;
 	transition: all, 0.3s;
+}
+.clientPaginate {
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
 }
 
 .filter__option span:last-child {
@@ -1535,7 +1545,7 @@ ol {
 }
 
 .product__item__pic {
-	height: 270px;
+	height: 240px;
 	position: relative;
 	overflow: hidden;
 }
