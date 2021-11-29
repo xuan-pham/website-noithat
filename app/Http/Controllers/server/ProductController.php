@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\product\storeRequest;
 use App\Http\Requests\product\updateRequest;
+
 class ProductController extends Controller
 {
 
@@ -31,38 +32,48 @@ class ProductController extends Controller
         if ($request->has('file_image')) {
             $file = $request->file_image;
             $ext = $request->file_image->extension();
-            $file_name = time() . '-' . 'product' .'.' . $ext;
+            $file_name = time() . '-' . 'product' . '.' . $ext;
             $file->move(public_path('uploads/product'), $file_name);
         }
         $request->merge(['image' => $file_name]);
         if (Product::create($request->all())) {
-            return redirect()->route('product.index')->with('success','Thêm mới thành công!');
+            return redirect()->route('product.index')->with('success', 'Thêm mới thành công!');
         }
     }
 
-
-    public function show()
-    {
-        //
-    }
-
-
-    public function edit( $id)
+    public function edit($id)
     {
         $product = Product::find($id);
         $data = Category::orderBy('name', 'ASC')->select('id', 'name')->get();
-        return view('server.product.edit',compact('data','product'));
+        return view('server.product.edit', compact('data', 'product'));
     }
 
 
-    public function update(updateRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        dd($request->all());
+        $product = Product::find($id);
+        if ($request->has('file_image')) {
+            unlink('uploads/product/' . $product->image);
+            $file = $request->file_image;
+            $ext = $request->file_image->extension();
+            $file_name = time() . '-' . 'product' . '.' . $ext;
+            $file->move(public_path('uploads/product'), $file_name);
+            $request->merge(['image' => $file_name]);
+            $product->update($request->all());
+            return redirect()->route('product.index')->with('success', 'Thay đổi thành công!');
+        } else {
+            $file_name = $product->image;
+            $request->merge(['image' => $file_name]);
+            $product->update($request->all());
+            return redirect()->route('product.index')->with('success', 'Thay đổi thành công!');
+        }
     }
 
 
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        $product->delete();
+        return redirect()->route('product.index')->with('success', 'Xoá thành công!');
     }
 }

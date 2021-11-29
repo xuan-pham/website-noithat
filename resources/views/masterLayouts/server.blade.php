@@ -185,7 +185,7 @@
             <a href="index3.html" class="brand-link">
                 <img src="{{ asset('server') }}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
+                <span class="brand-text font-weight-light">Quản trị</span>
             </a>
 
             <!-- Sidebar -->
@@ -222,7 +222,7 @@
                with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
                             <a href="{{ route('admin.dashboard') }}" class="nav-link ">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <i class="nav-icon fas fa-home"></i>
                                 <p>
                                     Trang chủ
                                 </p>
@@ -231,7 +231,7 @@
                         {{-- category --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-chart-pie"></i>
+                                <i class="nav-icon fas fa-archive"></i>
                                 <p>
                                     Danh mục sản phẩm
                                     <i class="right fas fa-angle-left"></i>
@@ -281,7 +281,7 @@
                         {{-- category blog --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-chart-pie"></i>
+                                <i class="nav-icon fas fa-bong"></i>
                                 <p>
                                     Danh mục tin tức
                                     <i class="right fas fa-angle-left"></i>
@@ -306,7 +306,7 @@
                         {{-- blog --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-chart-pie"></i>
+                                <i class="nav-icon fas fa-blog"></i>
                                 <p>
                                     Tin tức
                                     <i class="right fas fa-angle-left"></i>
@@ -331,7 +331,7 @@
                         {{-- order --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-chart-pie"></i>
+                                <i class="nav-icon fas fa-book-dead"></i>
                                 <p>
                                     Đơn hàng
                                     <i class="right fas fa-angle-left"></i>
@@ -348,7 +348,7 @@
                         {{-- change password --}}
                         <li class="nav-item">
                             <a href="" class="nav-link">
-                                <i class="nav-icon fas fa-chart-pie"></i>
+                                <i class="nav-icon fas fa-blind"></i>
                                 <p>
                                     <i class="right fas fa-angle-left"></i>
                                     Thay đổi mật khẩu
@@ -359,7 +359,7 @@
                         {{-- logout --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-chart-pie"></i>
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p>
                                     Đăng xuất
                                 </p>
