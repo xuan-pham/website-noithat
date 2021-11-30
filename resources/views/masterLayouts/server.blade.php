@@ -197,7 +197,7 @@
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
+                        <a href="#" class="d-block">{{ Auth::User()->name }}</a>
                     </div>
                 </div>
 
@@ -347,7 +347,7 @@
                         </li>
                         {{-- change password --}}
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('changepw.edit',Auth::User()->id) }}" class="nav-link">
                                 <i class="nav-icon fas fa-blind"></i>
                                 <p>
                                     <i class="right fas fa-angle-left"></i>
@@ -358,13 +358,17 @@
                         </li>
                         {{-- logout --}}
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p>
                                     Đăng xuất
                                 </p>
                             </a>
-
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                class="d-none">
+                                @csrf
+                            </form>
                         </li>
                     </ul>
                 </nav>

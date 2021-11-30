@@ -9,6 +9,10 @@ use App\Models\CategoryBlog;
 
 class BlogController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $data = Blog::search()->paginate(5);

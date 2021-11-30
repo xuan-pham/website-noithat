@@ -10,6 +10,10 @@ use App\Http\Requests\category\updateRequest;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $data = Category::search()->paginate(5);

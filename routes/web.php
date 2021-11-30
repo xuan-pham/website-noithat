@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\AdminController;
 //client
 use App\Http\Controllers\client\ShopController;
 use App\Http\Controllers\client\BlogsController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\server\BlogController;
 use App\Http\Controllers\server\ChangePwController;
 use App\Http\Controllers\server\ListBlogController;
 use App\Http\Controllers\server\OrderController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,8 +25,9 @@ use App\Http\Controllers\server\OrderController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//client
 
+Auth::routes();
+//client
 Route::get('/', [HomeController::class, 'index'])->name('trang-chu');
 Route::get('/lien-he', [HomeController::class, 'contact'])->name('lien-he');
 Route::get('/tim-kiem', [HomeController::class, 'search'])->name('tim-kiem');
@@ -32,13 +35,12 @@ Route::get('/tim-kiem', [HomeController::class, 'search'])->name('tim-kiem');
 Route::get('/cua-hang', [ShopController::class, 'index'])->name('cua-hang');
 Route::get('/cua-hang/chi-tiet-san-pham/{id}', [ShopController::class, 'detail'])->name('chi-tiet-san-pham');
 Route::get('/cua-hang/danh-muc-san-pham{id}', [ShopController::class, 'detailCategory'])->name('danh-muc-san-pham');
-
 //blog
 Route::get('/tin-tuc', [BlogsController::class, 'index'])->name('tin-tuc');
 Route::get('/tin-tuc/chi-tiet-tin-tuc', [BlogsController::class, 'index'])->name('chi-tiet-tin-tuc');
 Route::get('/tin-tuc/danh-muc-tin-tuc', [BlogsController::class, 'index'])->name('danh-muc-tin-tuc');
-
 //end client
+
 //server
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
@@ -83,13 +85,14 @@ Route::prefix('admin')->group(function () {
         Route::get('/', [OrderController::class, 'index'])->name('order.index');
         Route::get('/create', [OrderController::class, 'create'])->name('order.create');
         Route::post('/store', [OrderController::class, 'store'])->name('order.store');
-        Route::get('/edit', [OrderController::class, 'edit'])->name('order.edit');
-        Route::put('/update', [OrderController::class, 'update'])->name('order.update');
-        Route::delete('/destroy', [OrderController::class, 'destroy'])->name('order.destroy');
+        Route::get('/edit/{id}', [OrderController::class, 'edit'])->name('order.edit');
+        Route::put('/update/{id}', [OrderController::class, 'update'])->name('order.update');
+        Route::delete('/destroy/{id}', [OrderController::class, 'destroy'])->name('order.destroy');
     });
     // changepw
     Route::prefix('changepw')->group(function () {
-        Route::get('/edit', [ChangePwController::class, 'edit'])->name('changepw.edit');
-        Route::put('/update', [ChangePwController::class, 'update'])->name('changepw.update');
+        Route::get('/edit/{id}', [ChangePwController::class, 'edit'])->name('changepw.edit');
+        Route::put('/update/{id}', [ChangePwController::class, 'update'])->name('changepw.update');
     });
 });
+//login

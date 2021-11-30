@@ -11,7 +11,10 @@ use App\Http\Requests\product\updateRequest;
 
 class ProductController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $data = Product::search()->paginate(5);

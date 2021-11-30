@@ -4,13 +4,20 @@ namespace App\Http\Controllers\server;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Order;
+use App\Models\OrderDetail;
 
 class OrderController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        
-        return view('server.category.index');
+        $order = Order::paginate(5);
+        // dd($order);
+        return view('server.order.index', compact('order'));
     }
     public function create()
     {
@@ -22,14 +29,15 @@ class OrderController extends Controller
     }
     public function edit($id)
     {
-        // $data = Category::find($id);
-        return view('server.category.edit');
+        $list = Order::find($id);
+        $orderdetail = OrderDetail::where('idOrder', $id)->get();
+        return view('server.order.edit', compact('orderdetail','list'));
     }
     public function update(Request $request, $id)
     {
-        // $category = Category::find($id);
-        // $category->update($request->only('name', 'status'));
-        // return redirect()->route('category.index')->with('success', 'Thêm mới thành công!');
+        $order = Order::find($id);
+        $order->update($request->only('status'));
+        return redirect()->route('order.index')->with('success', 'Cập nhập thành công!');
     }
     public function destroy($id)
     {

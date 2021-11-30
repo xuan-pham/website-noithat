@@ -45,7 +45,7 @@
                         <a href="#" class="primary-btn">Thêm vào giở hàng</a>
                         <ul>
                             <li><b>Tình trạng</b> <span style="color: rgb(218, 77, 119)">Còn hàng</span></li>
-                            <li><b>Shipping</b> <samp>Miễn phí giao hàng</samp></li>
+                            <li><b>Vận chuyển</b> <samp>Miễn phí giao hàng</samp></li>
                             <li><b>Chia sẻ</b>
                                 <div class="share">
                                     <a href="#"><i class="fa fa-facebook"></i></a>

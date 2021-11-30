@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="{{ asset('client') }}/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="{{ asset('client') }}/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="{{ asset('client') }}/css/style.css" type="text/css">
+    @yield('css')
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
 </head>
 
 <body>
@@ -24,7 +26,7 @@
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="{{ route('trang-chu') }}"><img src="{{asset('client')}}/img/logo.png" alt=""></a>
+            <a href="{{ route('trang-chu') }}"><img src="{{ asset('client') }}/img/logo.png" alt=""></a>
         </div>
         <div class="humberger__menu__cart">
             <ul>
@@ -34,10 +36,10 @@
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
-                <img src="{{asset('client')}}/img/language.png" alt="">
+                <img src="{{ asset('client') }}/img/language.png" alt="">
                 <div>English</div>
                 <span class="arrow_carrot-down"></span>
-                
+
             </div>
             <div class="header__top__right__auth">
                 <a href="#"><i class="fa fa-user"></i> Login</a>
@@ -61,7 +63,7 @@
         <div class="humberger__menu__contact">
             <ul>
                 <li><i class="fa fa-envelope"></i> ducpxps14375@fpt.edu.vn</li>
-               
+
             </ul>
         </div>
     </div>
@@ -76,7 +78,7 @@
                         <div class="header__top__left">
                             <ul>
                                 <li><i class="fa fa-envelope"></i> ducpxps14375@fpt.edu.vn</li>
-                                
+
                             </ul>
                         </div>
                     </div>
@@ -88,9 +90,45 @@
                                 <a href="#"><i class="fa fa-linkedin"></i></a>
                                 <a href="#"><i class="fa fa-pinterest-p"></i></a>
                             </div>
-                          
+
                             <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
+
+                                @guest
+                                    <div class="row">
+                                        <div class="col-4">
+                                            @if (Route::has('login'))
+                                                <a class="nav-link"
+                                                    href="{{ route('login') }}">{{ __('Login') }}</a>
+                                            @endif
+                                        </div>
+                                        <div class="col-4">
+                                            @if (Route::has('register'))
+                                                <a class="nav-link"
+                                                    href="{{ route('register') }}">{{ __('Register') }}</a>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                @else
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            {{ Auth::user()->name }}
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                            <li> <a class="dropdown-item" href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault();
+                                                                                        document.getElementById('logout-form').submit();">
+                                                    {{ __('Logout') }}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
+                                        @csrf
+                                    </form>
+                                @endguest
                             </div>
                         </div>
                     </div>
@@ -101,14 +139,15 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="{{ route('trang-chu') }}"><img src="{{asset('client')}}/img/logo.png" alt=""></a>
+                        <a href="{{ route('trang-chu') }}"><img src="{{ asset('client') }}/img/logo.png"
+                                alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
                             <li><a href="{{ route('trang-chu') }}">Trang chủ</a></li>
-                            <li ><a href="{{ route('cua-hang') }}">Cửa hàng</a></li>
+                            <li><a href="{{ route('cua-hang') }}">Cửa hàng</a></li>
                             <li><a href="{{ route('tin-tuc') }}">Blog</a></li>
                             <li><a href="{{ route('lien-he') }}">Liên hệ</a></li>
                         </ul>
@@ -117,7 +156,7 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                           
+
                             <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                         </ul>
                         <div class="header__cart__price">Tổng: <span>$0</span></div>
@@ -183,7 +222,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="./index.html"><img src="{{asset('client')}}/img/logo.png" alt=""></a>
+                            <a href="./index.html"><img src="{{ asset('client') }}/img/logo.png" alt=""></a>
                         </div>
                         <ul>
                             <li>Address: 117, nguyen thi kieu, Q12</li>
@@ -230,7 +269,7 @@
                     </div>
                 </div>
             </div>
-          
+
     </footer>
     <!-- Footer Section End -->
 
@@ -244,7 +283,9 @@
     <script src="{{ asset('client') }}/js/owl.carousel.min.js"></script>
     <script src="{{ asset('client') }}/js/main.js"></script>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
 
 </body>
 

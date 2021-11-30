@@ -111,6 +111,15 @@ ol {
   Helper CSS
 -----------------------*/
 
+
+/* // */
+
+.box-ps {
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
 .section-title {
 	margin-bottom: 50px;
 	text-align: center;
@@ -858,7 +867,7 @@ ol {
 }
 
 .featured__item__pic {
-	height: 270px;
+	height: 180px;
 	position: relative;
 	overflow: hidden;
 	background-position: center center;

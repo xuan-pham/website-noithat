@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TableBlog extends Migration
+class CreateTableOrderDetail extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class TableBlog extends Migration
      */
     public function up()
     {
-        Schema::create('blog', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name',255)->unique();
-            $table->string('image',255);
-            $table->text('content');
-            $table->integer('id_blog')->unsigned();
-            $table->boolean('status')->default(1);   
+        Schema::create('orderdetail', function (Blueprint $table) {
+            $table->integer('idOrder');
+            $table->integer('id_product');
+            $table->double('quantity');
+            $table->double('price');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class TableBlog extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blog');
+        Schema::dropIfExists('orderdetail');
     }
 }
