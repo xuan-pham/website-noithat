@@ -12,6 +12,7 @@ class ChangePwController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('check-url-account');
         $this->middleware('auth');
     }
 

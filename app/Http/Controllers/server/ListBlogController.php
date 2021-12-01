@@ -5,10 +5,12 @@ namespace App\Http\Controllers\server;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CategoryBlog;
+
 class ListBlogController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('check-url-account');
         $this->middleware('auth');
     }
     public function index()
@@ -27,7 +29,7 @@ class ListBlogController extends Controller
     }
     public function edit($id)
     {
-      $data = CategoryBlog::find($id);
+        $data = CategoryBlog::find($id);
         return view('server.listBlog.edit', compact('data'));
     }
     public function update(Request $request, $id)

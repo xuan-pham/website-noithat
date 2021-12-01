@@ -11,6 +11,7 @@ class OrderController extends Controller
 {
     function __construct()
     {
+        $this->middleware('check-url-account');
         $this->middleware('auth');
     }
     public function index()
@@ -31,7 +32,7 @@ class OrderController extends Controller
     {
         $list = Order::find($id);
         $orderdetail = OrderDetail::where('idOrder', $id)->get();
-        return view('server.order.edit', compact('orderdetail','list'));
+        return view('server.order.edit', compact('orderdetail', 'list'));
     }
     public function update(Request $request, $id)
     {

@@ -3,7 +3,8 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 class menuAdmin extends Component
 {
     /**
@@ -23,6 +24,7 @@ class menuAdmin extends Component
      */
     public function render()
     {
-        return view('components.menu-admin');
+        $admin = User::find(Auth::User()->id);
+        return view('components.menu-admin', compact('admin'));
     }
 }
