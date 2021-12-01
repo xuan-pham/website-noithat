@@ -9,7 +9,7 @@ class CategoryBlog extends Model
 {
     use HasFactory;
     protected $table = 'categoryblog';
-    protected $fillable = ['name', 'status'];
+    protected $fillable = ['id','name', 'status'];
     public function countBlog()
     {
         return $this->hasMany(Blog::class, 'id_blog', 'id');

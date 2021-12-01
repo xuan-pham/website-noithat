@@ -1552,9 +1552,13 @@ ol {
 .product__item:hover .product__item__pic .product__item__pic__hover {
 	bottom: 20px;
 }
-
+.product__item__pics {
+    height: 180px;
+    position: relative;
+    overflow: hidden;
+}
 .product__item__pic {
-	height: 240px;
+	height:250px;
 	position: relative;
 	overflow: hidden;
 }
@@ -2499,14 +2503,14 @@ ol {
 
 .blog__details__hero__text h2 {
 	font-size: 46px;
-	color: #ffffff;
+	color: #000000;
 	font-weight: 700;
 	margin-bottom: 10px;
 }
 
 .blog__details__hero__text ul li {
 	font-size: 16px;
-	color: #ffffff;
+	color: #000000;
 	list-style: none;
 	display: inline-block;
 	margin-right: 45px;
@@ -2542,6 +2546,7 @@ ol {
 }
 
 .blog-details {
+	margin-top: -99px;
 	padding-bottom: 75px;
 	border-bottom: 1px solid #e1e1e1;
 }

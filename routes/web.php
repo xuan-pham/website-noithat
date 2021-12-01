@@ -34,11 +34,11 @@ Route::get('/tim-kiem', [HomeController::class, 'search'])->name('tim-kiem');
 //shop
 Route::get('/cua-hang', [ShopController::class, 'index'])->name('cua-hang');
 Route::get('/cua-hang/chi-tiet-san-pham/{id}', [ShopController::class, 'detail'])->name('chi-tiet-san-pham');
-Route::get('/cua-hang/danh-muc-san-pham{id}', [ShopController::class, 'detailCategory'])->name('danh-muc-san-pham');
+Route::get('/cua-hang/danh-muc-san-pham/{id}', [ShopController::class, 'detailCategory'])->name('danh-muc-san-pham');
 //blog
 Route::get('/tin-tuc', [BlogsController::class, 'index'])->name('tin-tuc');
-Route::get('/tin-tuc/chi-tiet-tin-tuc', [BlogsController::class, 'index'])->name('chi-tiet-tin-tuc');
-Route::get('/tin-tuc/danh-muc-tin-tuc', [BlogsController::class, 'index'])->name('danh-muc-tin-tuc');
+Route::get('/tin-tuc/chi-tiet-tin-tuc/{id}', [BlogsController::class, 'detail'])->name('chi-tiet-tin-tuc');
+Route::get('/tin-tuc/danh-muc-tin-tuc/{id}', [BlogsController::class, 'detailCategory'])->name('danh-muc-tin-tuc');
 //end client
 
 //server

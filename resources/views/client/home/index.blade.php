@@ -78,7 +78,7 @@
                                 <ul>
                                     <li><i class="fa fa-calendar-o"></i> {{ $item->created_at->format('d-m-Y') }}</li>
                                 </ul>
-                                <h5><a href="#">{{ $item->name }}</a></h5>
+                                <h5><a href="{{ route('chi-tiet-tin-tuc',$item->id) }}">{{ $item->name }}</a></h5>
                                 <p class="box-ps">{{ $item->content }}</p>
                             </div>
                         </div>

@@ -32,7 +32,7 @@
             <ul>
                 <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
             </ul>
-            <div class="header__cart__price">Tổng: <span>$150.00</span></div>
+            <div class="header__cart__price">Tổng: <span>$0</span></div>
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
@@ -118,7 +118,7 @@
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li> <a class="dropdown-item" href="{{ route('logout') }}"
                                                     onclick="event.preventDefault();
-                                                                                        document.getElementById('logout-form').submit();">
+                                                                                            document.getElementById('logout-form').submit();">
                                                     {{ __('Logout') }}
                                                 </a>
                                             </li>
@@ -156,8 +156,7 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
                         </ul>
                         <div class="header__cart__price">Tổng: <span>$0</span></div>
                     </div>
@@ -174,17 +173,7 @@
     <section class="hero hero-normal">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
-                    <div class="hero__categories">
-                        <div class="hero__categories__all">
-                            <i class="fa fa-bars"></i>
-                            <span>Danh mục</span>
-                        </div>
-                        <ul>
-                            <li><a href="#">Fresh Meat</a></li>
-                        </ul>
-                    </div>
-                </div>
+                <x-CategoryPr />
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
