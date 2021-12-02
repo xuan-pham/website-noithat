@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 //client
 use App\Http\Controllers\client\ShopController;
 use App\Http\Controllers\client\BlogsController;
+use App\Http\Controllers\client\CartController;
 //server
 use App\Http\Controllers\server\CategoryController;
 use App\Http\Controllers\server\ProductController;
@@ -14,7 +15,8 @@ use App\Http\Controllers\server\BlogController;
 use App\Http\Controllers\server\ChangePwController;
 use App\Http\Controllers\server\ListBlogController;
 use App\Http\Controllers\server\OrderController;
-
+//mail
+use App\Http\Controllers\mail\FormController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +41,11 @@ Route::get('/cua-hang/danh-muc-san-pham/{id}', [ShopController::class, 'detailCa
 Route::get('/tin-tuc', [BlogsController::class, 'index'])->name('tin-tuc');
 Route::get('/tin-tuc/chi-tiet-tin-tuc/{id}', [BlogsController::class, 'detail'])->name('chi-tiet-tin-tuc');
 Route::get('/tin-tuc/danh-muc-tin-tuc/{id}', [BlogsController::class, 'detailCategory'])->name('danh-muc-tin-tuc');
+//cart
+Route::get('/gio-hang', [CartController::class, 'index'])->name('gio-hang');
+Route::get('/thanh-toan', [CartController::class, 'checkout'])->name('thanh-toan');
+//mail
+Route::post('/lien-he', [FormController::class, 'addFeedback'])->name('lien-he');
 //end client
 
 //server

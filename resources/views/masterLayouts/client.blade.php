@@ -30,7 +30,7 @@
         </div>
         <div class="humberger__menu__cart">
             <ul>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                <li><a href="{{ route('gio-hang') }}"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
             </ul>
             <div class="header__cart__price">Tổng: <span>$0</span></div>
         </div>
@@ -118,7 +118,7 @@
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li> <a class="dropdown-item" href="{{ route('logout') }}"
                                                     onclick="event.preventDefault();
-                                                                                            document.getElementById('logout-form').submit();">
+                                                                                                    document.getElementById('logout-form').submit();">
                                                     {{ __('Logout') }}
                                                 </a>
                                             </li>
@@ -156,7 +156,7 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
+                            <li><a href="{{ route('gio-hang') }}"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
                         </ul>
                         <div class="header__cart__price">Tổng: <span>$0</span></div>
                     </div>
@@ -177,7 +177,7 @@
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#">
+                            <form action="{{ route('tim-kiem') }}" method="get">
                                 <div class="hero__search__categories">
                                     Tìm kiếm
                                     <span class="arrow_carrot-down"></span>

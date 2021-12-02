@@ -84,16 +84,17 @@
                     </div>
                 </div>
             </div>
-            <form action="#">
+            <form action="{{ route('lien-he') }}" method="post">
+                {{ csrf_field() }}
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
-                        <input type="text" placeholder="Tên của bạn...">
+                        <input type="text" name="name" placeholder="Tên của bạn...">
                     </div>
                     <div class="col-lg-6 col-md-6">
-                        <input type="text" placeholder="Eamil của bạn...">
+                        <input type="text" name="email" placeholder="Email của bạn...">
                     </div>
                     <div class="col-lg-12 text-center">
-                        <textarea placeholder="Lời nhắn...  "></textarea>
+                        <textarea name="text" placeholder="Lời nhắn...  "></textarea>
                         <button type="submit" class="site-btn">SEND MESSAGE</button>
                     </div>
                 </div>
