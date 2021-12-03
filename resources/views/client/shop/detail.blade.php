@@ -34,15 +34,18 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
                         <h3>{{ $data->name }}</h3>
-                        <div class="product__details__price">{{ number_format($data->price) }} $</div>
+                        <div class="product__details__price"> {{ number_format($data->price) }} $</div>
+                        {{-- /// --}}
                         <div class="product__details__quantity">
                             <div class="quantity">
-                                <div class="pro-qty">
-                                    <input type="text" value="1">
-                                </div>
+                                {{-- <div class="pro-qty">
+                                    <input type="text" name="quantity" id="quantity" value="1">
+                                </div> --}}
                             </div>
                         </div>
-                        <a href="#" class="primary-btn">Thêm vào giở hàng</a>
+                        <a href="" data-url="{{ route('them-vao-gio-hang', $data->id) }}"
+                            class="primary-btn add-to-cart">Thêm vào giở hàng</a>
+                        {{-- /// --}}
                         <ul>
                             <li><b>Tình trạng</b> <span style="color: rgb(218, 77, 119)">Còn hàng</span></li>
                             <li><b>Vận chuyển</b> <samp>Miễn phí giao hàng</samp></li>
@@ -97,7 +100,7 @@
                                 data-setbg="{{ asset('uploads/product') }}/{{ $item->image }}">
                             </div>
                             <div class="product__item__text">
-                                <h6><a href="{{ route('chi-tiet-san-pham',$item->id) }}">{{ $item->name }}</a></h6>
+                                <h6><a href="{{ route('chi-tiet-san-pham', $item->id) }}">{{ $item->name }}</a></h6>
                                 <h5>{{ number_format($item->price) }}$</h5>
                             </div>
                         </div>
@@ -107,4 +110,29 @@
         </div>
     </section>
     <!-- Related Product Section End -->
+@endsection
+@section('js')
+    <script>
+        function addToCart(e) {
+            e.preventDefault();
+            let urlCart = $(this).data('url');
+            let quantity = $('input#quantity').val();
+            $.ajax({
+                type: "GET",
+                url: urlCart,
+                dataType: 'json',
+                success: function(data) {
+                    if (data.code === 200){
+                        alert('then thanh cong');
+                    }
+                },
+                error: function() {
+
+                }
+            });
+        }
+        $(function() {
+            $('.add-to-cart').on('click', addToCart);
+        })
+    </script>
 @endsection

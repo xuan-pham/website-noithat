@@ -43,6 +43,8 @@ Route::get('/tin-tuc/chi-tiet-tin-tuc/{id}', [BlogsController::class, 'detail'])
 Route::get('/tin-tuc/danh-muc-tin-tuc/{id}', [BlogsController::class, 'detailCategory'])->name('danh-muc-tin-tuc');
 //cart
 Route::get('/gio-hang', [CartController::class, 'index'])->name('gio-hang');
+Route::get('/them-vao-gio-hang/{id}', [CartController::class, 'addToCart'])->name('them-vao-gio-hang');
+Route::get('/cap-nhap-gio-hang', [CartController::class, 'uploadsCart'])->name('cap-nhap-gio-hang');
 Route::get('/thanh-toan', [CartController::class, 'checkout'])->name('thanh-toan');
 //mail
 Route::post('/lien-he', [FormController::class, 'addFeedback'])->name('lien-he');
