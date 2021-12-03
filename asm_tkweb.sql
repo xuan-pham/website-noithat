@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th10 30, 2021 lúc 05:18 PM
+-- Thời gian đã tạo: Th12 03, 2021 lúc 02:04 AM
 -- Phiên bản máy phục vụ: 5.7.33
 -- Phiên bản PHP: 7.4.19
 
@@ -290,6 +290,30 @@ INSERT INTO `product` (`id`, `name`, `image`, `content`, `price`, `quantity`, `s
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
+  `name` varchar(125) COLLATE utf8_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `created_at` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 1, '2021-12-01 06:59:31', '2021-12-01 06:59:31'),
+(2, 'blogmanage', 1, '2021-12-01 06:59:31', '2021-12-01 06:59:31'),
+(3, 'productmanage', 1, '2021-12-01 07:00:51', '2021-12-01 07:00:51'),
+(4, 'customer', 1, '2021-12-01 07:00:51', '2021-12-01 07:00:51');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `users`
 --
 
@@ -301,15 +325,19 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `id_role` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'xuan', 'admin@gmail.com', NULL, '$2y$10$Az5CqGa10E26QioP8e3vTuKc3NZRBWhstv4MeG2KMcS244HbvWwaO', NULL, '2021-11-29 11:50:14', '2021-11-30 05:25:42');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `id_role`) VALUES
+(2, 'đức phạm xuân', 'pham.xuan.duc.23.09.2019@gmail.com', NULL, '$2y$10$0VaO8cAHJj//U.n0fjIJPeXFaThEJsCVqD7sbPBLjhsOTyV8g/4ua', '7whSqKzPaXnLQs2yQCQUdTotqqs9kEWxbor4NmXsW1NKv41WkwO4QjXsdSxg', '2021-12-01 00:07:08', '2021-12-01 00:07:08', 4),
+(3, 'admin', 'ducpxps14375@fpt.edu.vn', NULL, '$2y$10$.2o2w7U6rF1fW6pv/9FZ0eKrvzpddaFyta4Ew//z4hLhTaFsaRz2a', NULL, '2021-12-01 00:30:49', '2021-12-01 00:30:49', 1),
+(4, 'product manager', 'product@gmail.com', NULL, '$2y$10$SNIs0MzZnA8Ir0OMQTAaLupuC2otEYfW/WEvXkt6BKEEwyA.q2a.G', NULL, '2021-12-01 00:31:53', '2021-12-01 00:31:53', 2),
+(5, 'blog manager', 'blog@gmail.com', NULL, '$2y$10$6qIjqAZVokJEzxRqyhvctelsi7ZtGadVYqMn68LKAOVkIb.FUWt4e', NULL, '2021-12-01 00:32:21', '2021-12-01 00:37:56', 3);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -384,11 +412,18 @@ ALTER TABLE `product`
   ADD KEY `product_id_cate_foreign` (`id_cate`);
 
 --
+-- Chỉ mục cho bảng `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+  ADD UNIQUE KEY `users_email_unique` (`email`),
+  ADD KEY `id_role` (`id_role`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -449,10 +484,16 @@ ALTER TABLE `product`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
+-- AUTO_INCREMENT cho bảng `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -476,6 +517,12 @@ ALTER TABLE `orderdetail`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `product_id_cate_foreign` FOREIGN KEY (`id_cate`) REFERENCES `category` (`id`);
+
+--
+-- Các ràng buộc cho bảng `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `roles` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
