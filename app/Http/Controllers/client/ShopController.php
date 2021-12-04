@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 
+
 class ShopController extends Controller
 {
     public function index()
@@ -26,6 +27,6 @@ class ShopController extends Controller
         $name = Category::find($id);
         $category = Category::orderBy('name', 'ASC')->select('id', 'name')->get();
         $product = Product::orderBy('name', 'ASC')->select('id', 'name', 'image', 'price')->where('id_cate', $id)->paginate(6);
-        return view('client.shop.detailCategory', compact('product', 'category','name'));
+        return view('client.shop.detailCategory', compact('product', 'category', 'name'));
     }
 }

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\CategoryBlog;
+use App\Http\Requests\blog\stoneRequest;
+use App\Http\Requests\blog\updateRequest;
 
 class BlogController extends Controller
 {
@@ -24,7 +26,7 @@ class BlogController extends Controller
         $data = CategoryBlog::orderBy('name', 'ASC')->select('id', 'name')->get();
         return view('server.blog.create', compact('data'));
     }
-    public function store(Request $request)
+    public function store(stoneRequest $request)
     {
         if ($request->has('file_image')) {
             $file = $request->file_image;
@@ -42,7 +44,7 @@ class BlogController extends Controller
         $list = CategoryBlog::orderBy('name', 'ASC')->select('id', 'name')->get();
         return view('server.blog.edit', compact('data', 'list'));
     }
-    public function update(Request $request, $id)
+    public function update(updateRequest $request, $id)
     {
         $blog = Blog::find($id);
         if ($request->has('file_image')) {

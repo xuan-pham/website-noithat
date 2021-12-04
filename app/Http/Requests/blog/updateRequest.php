@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\product;
+namespace App\Http\Requests\blog;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,24 +24,20 @@ class updateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:product,name,'.request()->id,
-            'content'=>'required',
-            'id_cate'=>'required',
-            'price'=>'required',
-            'quantity'=>'required',
-            'file_image'=>'required',
+            'name' => 'required|unique:blog,name,' . request()->id,
+            'content' => 'required',
+            'id_blog' => 'required',
+            'file_image' => 'required',
         ];
     }
     public function messages()
     {
         return [
             'name.required' => 'không được để trống!',
-            'name.unique'=>'sản phẩm đã tồn tại',
+            'name.unique' => 'sản phẩm đã tồn tại',
             'content.required' => 'không được để trống!',
-            'id_cate.required' => 'không được để trống!',
-            'price.required' => 'không được để trống!',
-            'quantity.required' => 'không được để trống!',
-            'file_name.required' => 'không được để trống!',
+            'id_blog.required' => 'không được để trống!',
+            'file_image.required' => 'không được để trống!',
         ];
     }
 }

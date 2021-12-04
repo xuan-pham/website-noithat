@@ -72,7 +72,7 @@
                                                 $ </span></li>
                                         <li><input type="text" name="id_detail[]" hidden value="{{ $id }}">
                                             <input type="text" name="quantity[]" hidden value="{{ $item['quantity'] }}">
-                                            <input type="text" name="name[]" hidden value="{{ $item['name'] }}">
+                                            {{-- <input type="text" name="name[]" hidden value="{{ $item['name'] }}"> --}}
                                         </li>
                                     @endforeach
                                 </ul>

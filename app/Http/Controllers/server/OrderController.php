@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Product;
 
 class OrderController extends Controller
 {
@@ -16,38 +17,33 @@ class OrderController extends Controller
     }
     public function index()
     {
-        $order = Order::paginate(5);
-        // dd($order);
+        $order = Order::search()->paginate(5);
+        
         return view('server.order.index', compact('order'));
     }
     public function create()
     {
         return view('server.category.create');
     }
-    public function store(Request $request)
-    {
-        // return redirect()->route('category')->with('success', 'Thêm thành công!');
-    }
+
     public function edit($id)
     {
         $list = Order::find($id);
         $orderdetail = OrderDetail::where('idOrder', $id)->get();
-        return view('server.order.edit', compact('orderdetail', 'list'));
+        foreach ($orderdetail as $item) {
+            $total = $item->price;
+        }
+        $dataPro = explode(',', $item->id_product);
+        $dataQuan = explode(',',  $item->quantity);
+        $nameProduct = Product::find($dataPro);
+        return view('server.order.edit', compact('total', 'nameProduct', 'dataQuan', 'list'));
     }
     public function update(Request $request, $id)
     {
         $order = Order::find($id);
+
         $order->update($request->only('status'));
         return redirect()->route('order.index')->with('success', 'Cập nhập thành công!');
     }
-    public function destroy($id)
-    {
-        // $category = Category::find($id);
-        // if ($category->countProducts->count() > 0) {
-        //     return redirect()->route('category.index')->with('error', 'Không thể xoá danh mục có sản phẩm!');
-        // } else {
-        //     $category->delete();
-        //     return redirect()->route('category.index')->with('success', 'Xoá thành công!');
-        // }
-    }
+    
 }

@@ -22,7 +22,6 @@ class ProductController extends Controller
         return view('server.product.index', compact('data'));
     }
 
-
     public function create()
 
     {
@@ -44,7 +43,6 @@ class ProductController extends Controller
             return redirect()->route('product.index')->with('success', 'Thêm mới thành công!');
         }
     }
-
     public function edit($id)
     {
         $product = Product::find($id);
@@ -52,8 +50,7 @@ class ProductController extends Controller
         return view('server.product.edit', compact('data', 'product'));
     }
 
-
-    public function update(Request $request, $id)
+    public function update(updateRequest $request, $id)
     {
         $product = Product::find($id);
         if ($request->has('file_image')) {
@@ -72,7 +69,6 @@ class ProductController extends Controller
             return redirect()->route('product.index')->with('success', 'Thay đổi thành công!');
         }
     }
-
 
     public function destroy($id)
     {

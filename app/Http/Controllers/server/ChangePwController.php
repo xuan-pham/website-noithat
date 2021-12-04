@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Requests\changepw\updateRequest;
 class ChangePwController extends Controller
 {
     public function __construct()
@@ -21,7 +21,7 @@ class ChangePwController extends Controller
         $changepw = User::find($id);
         return view('server.changepw.edit', compact('changepw'));
     }
-    public function update(Request $request, $id)
+    public function update(updateRequest $request, $id)
     {
         $changepw = User::find($id);
         if (Hash::check($request->pw_old, $changepw->password)) {

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\server;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CategoryBlog;
+use App\Http\Requests\listOrder\stoneRequest;
+use App\Http\Requests\listOrder\updateRequest;
 
 class ListBlogController extends Controller
 {
@@ -22,7 +24,7 @@ class ListBlogController extends Controller
     {
         return view('server.listBlog.create');
     }
-    public function store(Request $request)
+    public function store(stoneRequest $request)
     {
         CategoryBlog::create($request->all());
         return redirect()->route('list.index')->with('success', 'Thêm thành công!');
@@ -32,7 +34,7 @@ class ListBlogController extends Controller
         $data = CategoryBlog::find($id);
         return view('server.listBlog.edit', compact('data'));
     }
-    public function update(Request $request, $id)
+    public function update(updateRequest $request, $id)
     {
         $category = CategoryBlog::find($id);
         $category->update($request->only('name', 'status'));

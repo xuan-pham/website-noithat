@@ -7,9 +7,6 @@
         </div>
         <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
     </form>
-    <div class="mt-4">
-        <a href="{{ route('product.create') }}">Thêm mới <i class="fas fa-plus"></i></a>
-    </div>
     <hr>
     @if (Session::has('success'))
         <div class="alert alert-success">
