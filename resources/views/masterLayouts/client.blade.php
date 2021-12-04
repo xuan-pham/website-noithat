@@ -118,7 +118,7 @@
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li> <a class="dropdown-item" href="{{ route('logout') }}"
                                                     onclick="event.preventDefault();
-                                                                                                        document.getElementById('logout-form').submit();">
+                                                                                                                document.getElementById('logout-form').submit();">
                                                     {{ __('Logout') }}
                                                 </a>
                                             </li>
@@ -272,9 +272,21 @@
     <script src="{{ asset('client') }}/js/mixitup.min.js"></script>
     <script src="{{ asset('client') }}/js/owl.carousel.min.js"></script>
     <script src="{{ asset('client') }}/js/main.js"></script>
+    <script src="{{ asset('client') }}/js/cart-js.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
+    <!-- Shoping Cart Section End -->
     @yield('js')
 </body>
 

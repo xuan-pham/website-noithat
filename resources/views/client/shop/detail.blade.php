@@ -122,8 +122,8 @@
                 url: urlCart,
                 dataType: 'json',
                 success: function(data) {
-                    if (data.code === 200){
-                        alert('then thanh cong');
+                    if (data.code === 200) {
+                        alertify.success('Thêm sản phẩm thành công');
                     }
                 },
                 error: function() {

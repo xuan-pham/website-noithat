@@ -5,7 +5,7 @@ $total = 0;
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="shoping__cart__table">
+                <div class="shoping__cart__table" data-url="{{ route('xoa-gio-hang') }}">
                     <table class="update_cart_url" data-url={{ route('cap-nhap-gio-hang') }}>
                         <thead>
                             <tr>
@@ -46,10 +46,11 @@ $total = 0;
                                             {{ number_format($item['price'] * $item['quantity']) }} $
                                         </td>
                                         <td>
-                                            <span data-id="{{ $id}}" class="btn btn-success cart_update">save</span>
+                                            <span data-id="{{ $id }}"
+                                                class="btn btn-success cart_update">save</span>
                                         </td>
                                         <td class="shoping__cart__item__close">
-                                            <span class="icon_close"></span>
+                                            <span data-id="{{ $id }}" class="icon_close cart_delete"></span>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -93,7 +94,7 @@ $total = 0;
                         <li>Tạm tính <span>{{ number_format($total) }} $</span></li>
                         <li>Tổng Tiền <span>{{ number_format($total) }} $</span></li>
                     </ul>
-                    <a href="#" class="primary-btn">Thanh Toán</a>
+                    <a href="{{ route('thanh-toan') }}" class="primary-btn">Thanh Toán</a>
                 </div>
             </div>
         </div>
