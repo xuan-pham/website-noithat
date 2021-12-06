@@ -23,28 +23,28 @@ class CartController extends Controller
     }
     public function done(Request $request)
     {
-        $total = 0;
-        $idOrders = rand(1, 100);
-        $request->merge(['id' => $idOrders]);
-        $request->merge(['status' => 1]);
-        $request->merge(['id_user' => Auth::User()->id]);
-        Order::create($request->only('id','name','email','phone','address','note','status','id_user'));
-        $cart = session()->get('cart');
-        foreach ($cart as $item) {
-            $total += $item['price'] * $item['quantity'];
-        }
-        $request->merge(['idOrder' => $idOrders]);
-        $request->merge(['id_product' => implode(",", $request->id_detail)]);
-        $request->merge(['quantity' => implode(",", $request->quantity)]);
-        $request->merge(['price' => $total]);
-        OrderDetail::create($request->only('idOrder', 'id_product', 'quantity', 'price'));
-        session()->forget('cart');
-        // $details = [
-        //     'title' => 'Cảm ơn bạn đã đặt hàng',
-        //     'name' => $request->name,
-        //     'body' => [$request->id_detail, $total,],
-        // ];
-        // Mail::to($request->email)->send(new \App\Mail\SendMail($details));
+        // $total = 0;
+        // $idOrders = rand(1, 100);
+        // $request->merge(['id' => $idOrders]);
+        // $request->merge(['status' => 1]);
+        // $request->merge(['id_user' => Auth::User()->id]);
+        // Order::create($request->only('id','name','email','phone','address','note','status','id_user'));
+        // $cart = session()->get('cart');
+        // foreach ($cart as $item) {
+        //     $total += $item['price'] * $item['quantity'];
+        // }
+        // $request->merge(['idOrder' => $idOrders]);
+        // $request->merge(['id_product' => implode(",", $request->id_detail)]);
+        // $request->merge(['quantity' => implode(",", $request->quantity)]);
+        // $request->merge(['price' => $total]);
+        // OrderDetail::create($request->only('idOrder', 'id_product', 'quantity', 'price'));
+        // session()->forget('cart');
+        $successOrder = [
+            'title' => 'Cảm ơn bạn đã đặt hàng',
+            'name' => $request->name,
+            'body' => 'Shop sẽ liên hệ với bạn nhanh nhất để xác minh đơn hàng, cảm ơn bạn.',
+        ];
+        Mail::to($request->email)->send(new \App\Mail\successOrder($successOrder));
         return view('client.cart.successOrder');
     }
     public function addToCart(Request $request, $id)
