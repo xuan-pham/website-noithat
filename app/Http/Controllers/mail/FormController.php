@@ -7,10 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMail;
+use App\Http\Requests\ContactRequest;
 
 class FormController extends Controller
 {
-    public function addFeedback(Request $request)
+    public function addFeedback(ContactRequest $request)
     {
         $details = [
             'title' => 'Xin chào khách hàng',
@@ -18,6 +19,6 @@ class FormController extends Controller
             'body' => $request->text,
         ];
         Mail::to($request->email)->send(new \App\Mail\SendMail($details));
-        return view('client.home.contact')->with('success','Gửi mail thành công');
+        return view('client.home.contact')->with('success', 'Gửi mail thành công');
     }
 }

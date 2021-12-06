@@ -2,7 +2,7 @@
 @section('title', 'liên hệ')
 @section('client')
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="{{asset('client')}}/img/1.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="{{ asset('client') }}/img/1.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -89,12 +89,22 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <input type="text" name="name" placeholder="Tên của bạn...">
+                        @error('name')
+                            <small class="help-block ml-2 text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <input type="text" name="email" placeholder="Email của bạn...">
+                        @error('email')
+                            <small class="help-block ml-2 text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="col-lg-12 text-center">
                         <textarea name="text" placeholder="Lời nhắn...  "></textarea>
+                        @error('text')
+                            <small class="help-block ml-2 text-danger">{{ $message }}</small>
+                        @enderror
+                        <br>
                         <button type="submit" class="site-btn">SEND MESSAGE</button>
                     </div>
                 </div>

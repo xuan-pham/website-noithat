@@ -3,9 +3,9 @@
 @section('content')
     <div class="login-box">
         <!-- /.login-logo -->
-        @if (Session::has('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
+        @if (Session::has('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
             </div>
         @endif
         <div class="card card-outline card-primary">
@@ -16,8 +16,8 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="input-group mb-3">
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                            value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="email">
+                        <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email"
+                            value="{{ old('email') }}"  autocomplete="email" autofocus placeholder="email">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -32,7 +32,7 @@
                     </div>
                     <div class="input-group mb-3">
                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-                            name="password" required autocomplete="current-password" placeholder="password">
+                            name="password"  autocomplete="current-password" placeholder="password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
