@@ -157,7 +157,7 @@
                     <div class="header__cart">
                         <ul>
                             <li><a href="{{ route('gio-hang') }}"><i class="fa fa-shopping-bag"></i>
-                                    <span>0</span></a></li>
+                                    <span></span></a></li>
                         </ul>
                         <div class="header__cart__price">Tổng: <span>$0</span></div>
                     </div>

@@ -50,7 +50,7 @@ class ProductController extends Controller
         return view('server.product.edit', compact('data', 'product'));
     }
 
-    public function update(updateRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $product = Product::find($id);
         if ($request->has('file_image')) {
